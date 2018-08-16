@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:nano",
+    "sketch": "nitrox_analyzer/nitrox_analyzer.ino",
+    "configuration": "cpu=atmega328"
+}
