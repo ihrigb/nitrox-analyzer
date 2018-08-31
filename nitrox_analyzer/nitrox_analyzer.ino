@@ -13,13 +13,13 @@
 #include "U8glib.h"
 
 // see http://code.google.com/p/u8glib/wiki/device
-U8GLIB_SSD1306_128X64 u8g(12, 11, 8, 9, 10);  // SW SPI Com: SCK = 4, MOSI = 5, CS = 6, A0 = 7 (new blue HalTec OLED)
+U8GLIB_SSD1306_128X64 u8g(12, 7, 8, 9, 10);  // SW SPI Com: SCK = 4, MOSI = 5, CS = 6, A0 = 7 (new blue HalTec OLED)
 
 char tmpstr[4];
 char percentString[6];
 
 //******** Create Objects
-Adafruit_ADS1115 ads(0x49); /* Use this for the 16-bit version */
+Adafruit_ADS1115 ads(0x48); /* Use this for the 16-bit version */
 
 char disclaimer1[] = "NX Analyzer\0";
 char disclaimer2[] = "    No Warranty!\0";
@@ -89,7 +89,7 @@ void getADS(void) {
 void setup(void) {
   Serial.begin(9600);
   DEBUGLN("Start");
-  pinMode(2, INPUT_PULLUP);
+  pinMode(5, INPUT);
 
   // The ADC input range (or gain) can be changed via the following
   // functions, but be careful never to exceed VDD +0.3V max, or to
@@ -150,7 +150,7 @@ void loop(void) {
   }
 
   lastRAvalue = RA.getAverage();
-  if (!digitalRead(2)) {
+  if (digitalRead(5)) {
     calib();
   }
 
